@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Pin block calculations for EBS | Soluspay | Secure Payments</title>
+
+<meta property='og:title' content='Pin block calculations for EBS - Soluspay | Secure Payments'>
+<meta property='og:description' content='In financial transactions, pin block calculations is one of the most important tasks and it&rsquo;s often a source for mistakes. In this article, we will be discussing pin block calculations in EBS system (it uses DES) while using our implementation, TA. TA is written in Python and it is used internally by our team for all of our testing and pin calculations. The source code is also available in Github.'>
+<meta property='og:url' content='/post/pin_block/'>
+<meta property='og:site_name' content='Soluspay | Secure Payments'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/4e0dc6d8eae72b5852113cc623888826?s=256'><meta property='article:author' content='https://facebook.com/adonese12'><meta property='article:section' content='Post'><meta property='article:tag' content='noebs'><meta property='article:tag' content='electronic-payment'><meta property='article:tag' content='faq'><meta property='article:tag' content='ebs error'><meta property='article:tag' content='pin block'><meta property='article:tag' content='des'><meta property='article:tag' content='dukpt'><meta property='article:tag' content='authentication'><meta property='article:published_time' content='2019-04-20T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-04-20T00:00:00&#43;02:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@_noebs'><meta name='twitter:creator' content='@_noebs'>
+
+
+<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Soluspay | Secure Payments" />
+
+
+<link rel="preload" href="/css/style.css" as="style">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="/">
+          <h1 class="title is-4">Solus</h1>
+        </a>
+
+        
+        
+        <a class="nav-item" href="/about/" title="about">
+
+          <h1 class="title is-4">about</h1>
+        </a>
+        
+        <a class="nav-item" href="/careers/" title="careers">
+
+          <h1 class="title is-4">careers</h1>
+        </a>
+        
+        <a class="nav-item" href="/contact/" title="contact">
+
+          <h1 class="title is-4">contact</h1>
+        </a>
+        
+        <a class="nav-item" href="/products/" title="products">
+
+          <h1 class="title is-4">products</h1>
+        </a>
+        
+        <a class="nav-item" href="/team/" title="team">
+
+          <h1 class="title is-4">team</h1>
+        </a>
+        
+
+        <div class="nav-right">
+          <nav class="nav-item level is-mobile"><a class="level-item" aria-label="github"
+              href='https://github.com/adonese' target='_blank'
+              rel='noopener'>
+              <span class="icon">
+                <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+              </span>
+            </a><a class="level-item" aria-label="facebook"
+              href='https://facebook.com/adonese12' target='_blank'
+              rel='noopener'>
+              <span class="icon">
+                <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    
+  </svg></i>
+              </span>
+            </a><a class="level-item" aria-label="twitter"
+              href='https://twitter.com/_noebs' target='_blank'
+              rel='noopener'>
+              <span class="icon">
+                <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+              </span>
+            </a><a class="level-item" aria-label="email"
+              href='mailto:adonese@noebs.dev' target='_blank'
+              rel='noopener'>
+              <span class="icon">
+                <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+              </span>
+            </a><a class="level-item" aria-label="linkedin"
+              href='https://linkedin.com/in/adonese' target='_blank'
+              rel='noopener'>
+              <span class="icon">
+                <i class><svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path stroke-width="1.8" d="m5.839218,4.101561c0,1.211972 -0.974141,2.194011 -2.176459,2.194011s-2.176459,-0.982039 -2.176459,-2.194011c0,-1.211094 0.974141,-2.194011 2.176459,-2.194011s2.176459,0.982917 2.176459,2.194011zm0.017552,3.94922l-4.388022,0l0,14.04167l4.388022,0l0,-14.04167zm7.005038,0l-4.359939,0l0,14.04167l4.360816,0l0,-7.370999c0,-4.098413 5.291077,-4.433657 5.291077,0l0,7.370999l4.377491,0l0,-8.89101c0,-6.915523 -7.829986,-6.66365 -9.669445,-3.259423l0,-1.891237z"/>
+    
+  </svg></i>
+              </span>
+            </a></nav>
+        </div>
+
+        <nav class="nav">
+          
+
+          
+        </nav>
+
+      </div>
+      </nav>
+
+  </div>
+  </section>
+  
+<section class="section">
+  <div class="container">
+    <div class="subtitle tags is-6 is-pulled-right">
+      
+      
+<a class="subtitle is-6" href="/tags/noebs">#noebs</a>
+
+
+
+  
+  | <a class="subtitle is-6" href="/tags/electronic-payment">#electronic-payment</a>
+  
+  | <a class="subtitle is-6" href="/tags/faq">#faq</a>
+  
+  | <a class="subtitle is-6" href="/tags/ebs-error">#ebs error</a>
+  
+  | <a class="subtitle is-6" href="/tags/pin-block">#pin block</a>
+  
+  | <a class="subtitle is-6" href="/tags/des">#des</a>
+  
+  | <a class="subtitle is-6" href="/tags/dukpt">#dukpt</a>
+  
+  | <a class="subtitle is-6" href="/tags/authentication">#authentication</a>
+  
+
+      
+    </div>
+    <h2 class="subtitle is-6">April 20, 2019</h2>
+    <h1 class="title">Pin block calculations for EBS</h1>
+    
+    <div class="content">
+      
+
+<p>In financial transactions, pin block calculations is one of the most important tasks and it&rsquo;s often a source for mistakes. In this article, we will be discussing pin block calculations in EBS system (it uses DES) while using our implementation, TA.
+<a href="https://beta.soluspay.net/pin" target="_blank">TA</a> is written in Python and it is used internally by our team for all of our testing and pin calculations. The source code is also available in <a href="https://github.com/adonese/ta" target="_blank">Github</a>.</p>
+
+<h2 id="little-about-technology-stach">Little about technology stach</h2>
+
+<p>We used a very interesting new-in-the town Python framework built on the new async, <a href="https://github.com/encode/starlette" target="_blank">Starlette</a>. Starlette and its server <a href="https://github.com/encode/uvicorn" target="_blank">uvicron</a> are very interesting addition to Python world as they allow for high throughput, something was not easily achievable in Python before. The standardization of async framework is for the best interest of the language; people can focus their effort on one place. We are very excited about uvicorn and starlette and we couldn&rsquo;t have recommended them enough!</p>
+
+<ul>
+<li>we use Jinja2 as template engine</li>
+<li>gunicorn is used as application server (with uvicorn worker class)</li>
+<li>we use systemd for running the service (restart, etc)</li>
+<li>the whole application is running behind nginx server</li>
+</ul>
+
+<p>We feel people might find it interesting or useful to know more about our infrastructure and what technologies we are using. We tried different technologies than the mentioned there; we tried to use <code>supervisor</code> instead of <code>systemd</code>, but <code>systemd</code> Just Works &trade;. We have not experiement with any other python web server than gunicorn; I worked with uWSGI before and it was just hard to get it works (maybe because i used apache?). Gunicorn is as performant as uWSGI and more simplified. For all practical reasons, gunicorn is just better.
+We use nginx as a reverse proxy and load balancer so that&rsquo;s that. Also, now the whole world is running nginx 🤷‍.</p>
+
+<p>If you have any questions, please reach out and let us know! We also glad to hear from you!</p>
+
+      
+      <div class="related">
+
+<h3>Similar articles:</h3>
+<ul>
+	
+	<li><a href="/faq/">FAQ: your first support for any EBS issue</a></li>
+	
+	<li><a href="/post/noebs/">noebs: the most secure middleware</a></li>
+	
+</ul>
+</div>
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="section footer-menu">
+
+  
+  <script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/matomo.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript>
+  <img src="//matomo.example.com/piwik.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+</noscript>
+
+  
+
+  <footer>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <a class="nav-item" href="/">
+            <h1 class="title is-4 footer-item">Solus</h1>
+          </a>
+
+          
+          
+          <a class="nav-item" href="/about/" title="about">
+
+            <h1 class="title is-4 footer-item">about</h1>
+          </a>
+          
+          <a class="nav-item" href="/careers/" title="careers">
+
+            <h1 class="title is-4 footer-item">careers</h1>
+          </a>
+          
+          <a class="nav-item" href="/contact/" title="contact">
+
+            <h1 class="title is-4 footer-item">contact</h1>
+          </a>
+          
+          <a class="nav-item" href="/products/" title="products">
+
+            <h1 class="title is-4 footer-item">products</h1>
+          </a>
+          
+          <a class="nav-item" href="/team/" title="team">
+
+            <h1 class="title is-4 footer-item">team</h1>
+          </a>
+          
+        </div>
+      </nav>
+    </div>
+  
+
+<div class="container has-text-centered">
+  <p></p>
+  
+  <p>Built with ❤ by your friends at Shargii</p>
+  
+</div>
+
+</footer>
+</section>
+</html>

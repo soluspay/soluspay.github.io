@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" {{ with .Site.LanguageCode }} lang="{{ . }}" {{ end }}>
+
+<head>
+    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{ if eq .IsHome false }}
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    {{ else }}
+    <title>{{ .Site.Params.Info.homeTitle }}</title>
+    {{ end }}
+    {{ if .Site.Params.Info.enableSocial }}
+    {{- partial "social/opengraph" . -}}
+    {{ end }}
+
+    {{ if .Site.Menus.form }}
+<link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+    {{end}}
+
+    {{ if .Site.Params.rss }}
+    <link href="{{ .Site.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+    {{ end }}
+    <!--fix me, it is probably better to use the urlFor syntax-->
+    <link rel="preload" href="/css/style.css" as="style">
+    <!--not the best way of doing it-->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- <script src="https://kit.fontawesome.com/7097f83eeb.js" crossorigin="anonymous"></script> -->
+
+    <!-- <link rel="stylesheet" href="{{ "css/style.css" | relURL }}"/> -->
+    {{- range .Site.Params.Assets.customCSS -}}
+    <link rel='stylesheet' href='{{ . | absURL }}'>
+    {{- end -}}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#9f00a7">
+    <meta name="theme-color" content="#ffffff">
+
+        {{ if .Site.Menus.form }}
+        <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+        {{end}}
+                <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+
+
+</head>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('/js/sw.js')
+            .then(function () { console.log('Service Worker Registered'); });
+    }
+</script>
+
+
+{{ if .Site.Menus.form }}
+<script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+{{end}}
+
+<script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+
+
+<body>

@@ -1,0 +1,63 @@
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="/">
+          <h1 class="title is-4">Solus</h1>
+        </a>
+
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.noebs_menu }}
+        <a class="nav-item" href="{{ .URL }}" title="{{ .Title }}">
+
+          <h1 class="title is-4">{{ .Name }}</h1>
+        </a>
+        {{ end }}
+
+        <div class="nav-right">
+          <nav class="nav-item level is-mobile">
+            <a class="level-item" aria-label="Download CashQ!"
+              href='https://play.google.com/store/apps/details?id=net.soluspay.cashq' target='_blank'
+              rel='noopener'>
+              <span class="icon">
+                <i>
+                  {{- partial "svg/icons" "google_play" -}}
+                </i>
+              </span>
+              Download CashQ!
+            </a>
+          </nav>
+        </div>
+
+        <nav class="nav">
+          {{ if (isset .Site.Params "sections_left" ) }}
+          <div class="nav-left">
+            {{- range $section, $printable := .Site.Params.sections_left -}}
+            {{- if $printable -}}
+            <a class="nav-item" href="{{$section}}">
+              <h2 class="title is-5">{{$printable}}</h2>
+            </a>
+            {{- end -}}
+            {{- end -}}
+          </div>
+          {{ end }}
+
+          {{ if (isset .Site.Params "sections_right" ) }}
+          <div class="nav-right">
+            {{- range $section, $printable := .Site.Params.sections_right -}}
+            {{- if $printable -}}
+            <a class="nav-item" href="{{$section}}">
+              <h2 class="title is-5">{{$printable}}</h2>
+            </a>
+            {{- end -}}
+            {{- end -}}
+          </div>
+          {{ end }}
+        </nav>
+
+      </div>
+      </nav>
+
+  </div>
+  </section>
+  

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pin block on Soluspay | Secure Payments</title>
+    <link>/tags/pin-block/</link>
+    <description>Recent content in pin block on Soluspay | Secure Payments</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="/tags/pin-block/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pin block calculations for EBS</title>
+      <link>/post/pin_block/</link>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/post/pin_block/</guid>
+      <description>In financial transactions, pin block calculations is one of the most important tasks and it&amp;rsquo;s often a source for mistakes. In this article, we will be discussing pin block calculations in EBS system (it uses DES) while using our implementation, TA. TA is written in Python and it is used internally by our team for all of our testing and pin calculations. The source code is also available in Github.</description>
+    </item>
+    
+  </channel>
+</rss>

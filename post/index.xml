@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Soluspay | Secure Payments</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Soluspay | Secure Payments</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 23 Aug 2019 00:00:00 +0200</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pin block calculations for EBS</title>
+      <link>/post/pin_block/</link>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/post/pin_block/</guid>
+      <description>In financial transactions, pin block calculations is one of the most important tasks and it&amp;rsquo;s often a source for mistakes. In this article, we will be discussing pin block calculations in EBS system (it uses DES) while using our implementation, TA. TA is written in Python and it is used internally by our team for all of our testing and pin calculations. The source code is also available in Github.</description>
+    </item>
+    
+    <item>
+      <title>FAQ: your first support for any EBS issue</title>
+      <link>/faq/</link>
+      <pubDate>Wed, 17 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/faq/</guid>
+      <description>List of common EBS errors and their meaninings    error code error meaning how to solve     196 System error regarding the pin block see our post on pin block calculations   000 Approval    103 Format Error Invalid merchant or service provider   130 Invalid format The transaction has invalid format. After the transaction authorization, the terminal or external host will declined the response   178 Original request not found Returned if the voucher is not found for the particular phone number sent on the request of cash out voucher, the phone number entered isn’t the same as the one used to generate the voucher   158 Invalid processing code    161 Withdrawal limit exceeded    191 Destination not available The transaction destination (e.</description>
+    </item>
+    
+    <item>
+      <title>noebs: the most secure middleware</title>
+      <link>/post/noebs/</link>
+      <pubDate>Wed, 17 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/post/noebs/</guid>
+      <description>API-first, high performant middleware. noebs is the most secure and modern middleware.
+ What is noebs It is definitely not a replacement for EBS, if anything we embrace the use of EBS and its role as a unified switching system. But, we aim to provide a thin wrapper around EBS functionalities that can be exposed to both POS and mobile applications. A starting point where you can write your business logic.</description>
+    </item>
+    
+    <item>
+      <title>noebs technology stack</title>
+      <link>/noebs_pro/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/noebs_pro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>noebs technology stack</title>
+      <link>/infra/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/infra/</guid>
+      <description>noebs supports interesting technologies that makes it the best in class solution. We support HTTP/2, server push (for live dashboard updates). It comes with Redis support and optional classical DB (you can use sqlite, mysql, and postgres). Resiliency and database distributions are first class citizen. When using proper setup, you can scale upto how your load balancer can handle. We use nginx as a reverse proxy and load balancer, and using this awesome setup we were able to scale to multiple servers without changing a single line of code in noebs.</description>
+    </item>
+    
+    <item>
+      <title>Guides on how to deploy your noebs applications</title>
+      <link>/guides/use-noebs/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/guides/use-noebs/</guid>
+      <description>Why Go? Go is really fast! Our application can happily serve more than 60k req/sec. The bottleneck will never be on your payment gateway service! Plus, Go helps with many of the problems I faced while working with Python, the static typing can prevent your errors from occurring only at runtime, and your code will compile into a single binary that you just run. I’ve been very excited to write web services Go and this project offers me just that!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/owasp/</link>
+      <pubDate>Fri, 23 Aug 2019 00:00:00 +0200</pubDate>
+      
+      <guid>/owasp/</guid>
+      <description>OWASP The Open Web Application Security Project is an international non-profit organization dedicated to web application security. They&amp;rsquo;re best know by OWASP Top 10, a curated list of top 10 most critical security risks. This post will highlight some of the practices we are following at Solus while building our systems.
+SQL injection This is one of the very common and the first item in OWASP Top 10. In it&amp;rsquo;s simplest form, it is about sending a sql code through e.</description>
+    </item>
+    
+  </channel>
+</rss>

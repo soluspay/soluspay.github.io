@@ -1,0 +1,3 @@
+[submodule "no-ebs.github.io"]
+	path = no-ebs.github.io
+	url = https://github.com/no-ebs/no-ebs.github.io.git

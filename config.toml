@@ -1,0 +1,65 @@
+baseurl = ""
+languageCode = "en-US"
+title = "Soluspay: Secure Payments"
+disqusShortname = "shortname"
+googleAnalytics = ""
+Paginate = 5 # Number of posts per page
+enableRobotsTXT = true
+publishDir = "public"
+form = false
+
+[params.global]
+description = "SolusPay is a Sudanese Financial Service Provider (FSP), from Central Bank of Sudan, under license 12/2019. Solus offers variety of solutions ranging from mobile banking, mobile payments, core banking systems, middleware and security consultations. All of our systems are PCI compliant and went through excessive testings. In addition to payment systems, we also offer services and solutions for government in flour management and subsidation, fuel management and other key systems for the government of the Sudan."
+
+[params.rss] # Adding this tag enables RSS feed
+includeContent = true # Includes whole content in rss
+authorName = "Solus Team" # Author full name
+authorEmail = "hi@soluspay.net" # Author email
+
+[params.assets]
+# customCSS = ["css/custom.css"]
+
+[params.info]
+adsense = "" # Adsense ID (ID only, without ca-pub-)
+enableSocial = true # Adds OpenGraph and Twitter cards
+homeTitle = "SolusPay" # Title for home page
+poweredby = false # Adds powered by hugo and kiss below Copyright
+related = true # Includes related articles at the bottom of the article
+codeCopy = true # Add copy button above code blocks
+description = "SolusPay is a Sudanese Financial Service Provider (FSP), from Central Bank of Sudan, under license 12/2019. Solus offers variety of solutions ranging from mobile banking, mobile payments, core banking systems, middleware and security consultations. All of our systems are PCI compliant and went through excessive testings. In addition to payment systems, we also offer services and solutions for government in flour management and subsidation, fuel management and other key systems for the government of the Sudan."
+
+[params.features]
+disqusOnDemand = true  # Load Disqus comments on click
+
+
+[params.opengraph.facebook]
+admins = [] # array of Facebook IDs
+appID = ""
+pageID = ""
+
+[params.opengraph.twitter]
+page = "" # Twitter Page username. If not set, params.social.twitter will be used.
+
+[params.social]
+twitter = "_noebs"
+github = "adonese"
+email = "adonese@noebs.dev"
+linkedin = "adonese"
+facebook = "adonese12"
+instagram = ""
+codepen = ""
+rss = "index.xml" # Add this to show RSS button in social.
+
+[params.social.config]
+platforms = ["github","facebook","twitter","instagram","email","codepen","linkedin"]
+
+[taxonomies]
+tag ="tags"
+
+[blackfriday]
+hrefTargetBlank = true
+sectionPagesMenu = "noebs_menu"
+
+[outputs]
+home = ["HTML", "AMP", "RSS"]
+page = ["HTML", "AMP", "RSS"]

@@ -1,0 +1,48 @@
+{{ partial "header" . }}
+{{ partial "nav" . }}
+<section class="section">
+  <div class="container">
+    <h1 class="title">{{ .Title }}</h1>
+    {{ if and (.Site.Params.Info.adsense) (.Params.adsenseTop) }}
+    {{ partial "adsense" . }}
+    {{ end }}
+    <div class="content">
+      {{ .Content }}
+
+      <!--Add other div here-->
+
+
+      <!--
+      <div class="flexbox">
+        <div class="my-item" style="padding-right: 15px; flex-grow: 1.3;">
+          <img src="/assets/svg/credit-card-front.svg" alt="credit card picture" width="70%">
+          <h1>Top niche</h1>
+          <p>Great user experience and neat design! Highly performant systems, used by thousands! We power many
+            businesses (including ours!). We care about our data and we always make sure that our systems are all PCI
+            compliant.</p>
+        </div>
+        <div class="my-item" style="padding-right: 15px;flex-grow: 1;">
+          <img src="/assets/svg/user-secret.svg" alt="credit card picture" width="70%">
+          <h1>Security</h1>
+          <p>Security is a code principal in our design. We make sure that your transactions are safe and secure with
+            us.</p>
+        </div>
+        <div class="my-item" style="flex-grow: 1;">
+          <img src="/assets/svg/shield-check.svg" alt="credit card picture" width="70%">
+          <h1>PCI Compliance</h1>
+          <p>Our systems are all PCI compliant, and we regularly conduct security auditing to ensure that.</p>
+        </div>
+      </div>
+      -->
+
+
+
+
+    </div>
+
+  </div>
+</section>
+{{ if (and (.Site.Params.Info.codeCopy) (findRE "<pre" .Content 1)) }}
+<script src="/js/copycode.js"></script>
+{{ end }}
+{{ partial "footer" . }}
