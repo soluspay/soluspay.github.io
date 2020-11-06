@@ -10,6 +10,10 @@
   {{- partial "analytics/fathom" . -}}
   {{ end }}
 
+
+  {{if .Site.Menus.nofooter}}
+  <p>Fuck me</p>
+  {{else}}
   <footer>
     <div class="container">
       <nav class="nav">
@@ -42,6 +46,8 @@
     </div>
 
   </footer>
+
+  {{end}}
 </section>
 
 </html>

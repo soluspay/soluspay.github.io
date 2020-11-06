@@ -14,17 +14,13 @@
     {{- partial "social/opengraph" . -}}
     {{ end }}
 
-    {{ if .Site.Menus.form }}
-<link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
-    {{end}}
 
     {{ if .Site.Params.rss }}
     <link href="{{ .Site.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{ end }}
-    <!--fix me, it is probably better to use the urlFor syntax-->
-    <link rel="preload" href="/css/style.css" as="style">
+
     <!--not the best way of doing it-->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 
     <!-- <script src="https://kit.fontawesome.com/7097f83eeb.js" crossorigin="anonymous"></script> -->
 
@@ -45,7 +41,6 @@
         {{ if .Site.Menus.form }}
         <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
         {{end}}
-                <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
 
 
 </head>
@@ -62,8 +57,6 @@
 {{ if .Site.Menus.form }}
 <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 {{end}}
-
-<script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 
 
 <body>
