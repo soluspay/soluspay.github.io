@@ -1,6 +1,6 @@
 +++
 layout = "clean"
-menu = "nofooter"
+#menu = "nofooter"
 url = "/searchme"
 
 description = """CashQ provides this Website and Services (located at https://soluspay.net) to you subject to the notices, terms, and conditions set forth in these terms (the "Terms of Use"). In addition, when you use any of our Services, you will be subject to the rules, guidelines, policies, terms, and conditions applicable to such service, and they are incorporated into this Terms of Use by this reference. This Terms of Service was created by Terms of Use Template and the Disclaimer Sample."""
