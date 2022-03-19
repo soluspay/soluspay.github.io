@@ -17,7 +17,7 @@ authorName = "Solus Team" # Author full name
 authorEmail = "hi@soluspay.net" # Author email
 
 [params.assets]
-customCSS = ["css/style.css"]
+customCSS = ["style.css"]
 
 [params.info]
 adsense = "" # Adsense ID (ID only, without ca-pub-)
